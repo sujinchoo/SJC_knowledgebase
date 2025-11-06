@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nutanix / HCI 개념 정리 (TAM 대비)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --card: #ffffff;
+      --line: #e2e6ef;
+      --title: #1f2937;
+      --accent: #2563eb;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 20px;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      text-align: center;
+      color: var(--title);
+      margin-bottom: 16px;
+    }
+    p.desc {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.03);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+      margin-bottom: 26px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: rgba(37, 99, 235, 0.05);
+      padding: 14px 18px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    @media (max-width: 720px) {
+      th, td { font-size: 13px; }
+      .card { border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Nutanix / HCI 핵심 정리</h1>
+    <p class="desc">Lenovo TAM · HCI 기반 고객 대응을 위한 핵심 개념 모음</p>
+
+    <!-- 1. HCI 개요 -->
+    <div class="card">
+      <div class="card-header">1. HCI (Hyper-Converged Infrastructure)란?</div>
+      <table>
+        <tr>
+          <th style="width: 18%;">정의</th>
+          <td>
+            기존 3-Tier 구조(Compute + SAN Storage + Network)를 하나의 x86 장비 안에서
+            <b>소프트웨어로 통합해 제공</b>하는 인프라 구조. 확장 시 노드만 추가하면 됨(Scale-out).
+          </td>
+        </tr>
+        <tr>
+          <th>기존 3-Tier 문제</th>
+          <td>
+            스토리지 따로, 서버 따로 운영해야 해서 초기 설계/확장이 복잡하고 비용도 큼.
+          </td>
+        </tr>
+        <tr>
+          <th>HCI 장점</th>
+          <td>
+            <ul>
+              <li>서버에 디스크를 장착해 바로 스토리지로 사용 → 별도 SAN 없이도 됨</li>
+              <li>VM, 스토리지, 네트워크를 한 콘솔(Prism)에서 관리</li>
+              <li>필요시 노드만 추가해서 성능/용량 확장 (Linear Scale-out)</li>
+              <li>SW 정의 인프라(SDI)라 자동화·모니터링에 유리</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>대표 구현</th>
+          <td>Nutanix, VMware vSAN, Dell VxRail, Lenovo ThinkAgile HX (Nutanix 기반)</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 2. Nutanix 핵심 컴포넌트 -->
+    <div class="card">
+      <div class="card-header">2. Nutanix 핵심 구성요소</div>
+      <table>
+        <tr>
+          <th style="width: 18%;">AHV</th>
+          <td>
+            Nutanix가 제공하는 자체 하이퍼바이저. VMware ESXi를 대체 가능. VM 생성/삭제/스냅샷을 Prism에서 통합 관리.
+          </td>
+        </tr>
+        <tr>
+          <th>Prism / Prism Central</th>
+          <td>
+            클러스터와 VM, 스토리지, 알림을 하나의 웹 콘솔에서 관리하는 도구.
+            여러 클러스터가 있을 경우 Prism Central에서 통합 뷰 제공.
+          </td>
+        </tr>
+        <tr>
+          <th>Controller VM (CVM)</th>
+          <td>
+            Nutanix의 핵심. 각 노드마다 CVM이 있고, 이 CVM들이 모여 하나의 분산 스토리지 풀을 구성.
+            이 덕분에 물리 디스크를 모두 합쳐 하나의 가상 스토리지처럼 사용 가능.
+          </td>
+        </tr>
+        <tr>
+          <th>Storage Layer</th>
+          <td>
+            NDFS(Nutanix Distributed File System) 기반. Data Locality, Replication Factor(RF2/RF3)로 데이터 보호.
+          </td>
+        </tr>
+      </table>
+      <div class="note">
+        💡 TAM 관점 포인트: Nutanix는 “노드마다 CVM이 돌고, 그게 분산 스토리지 역할을 한다” 이 한 문장을 정확히 설명할 수 있으면 구조 이해한 걸로 봅니다.
+      </div>
+    </div>
+
+    <!-- 3. Data Locality & RF -->
+    <div class="card">
+      <div class="card-header">3. Data Locality & Replication Factor</div>
+      <table>
+        <tr>
+          <th style="width: 18%;">Data Locality</th>
+          <td>
+            VM이 동작하는 노드에 가능한 한 그 VM의 데이터를 같이 두어서 I/O 성능을 높이는 개념.
+            → “VM이 있는 곳에 데이터도 있게 하자.”
+          </td>
+        </tr>
+        <tr>
+          <th>Replication Factor (RF)</th>
+          <td>
+            RF2는 데이터를 최소 2곳에, RF3는 3곳에 복제해서 장애 시에도 서비스가 유지되도록 하는 기술.
+            엔터프라이즈/금융처럼 높은 가용성 요구 시 RF3 사용.
+          </td>
+        </tr>
+        <tr>
+          <th>Self-healing</th>
+          <td>
+            노드나 디스크가 장애나면, 남아있는 노드들이 자동으로 다시 데이터 균형을 맞춤.
+            이것 때문에 “노드 하나 죽어도 서비스 계속”이 가능.
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 4. Lenovo ThinkAgile HX 연계 -->
+    <div class="card">
+      <div class="card-header">4. Lenovo ThinkAgile HX와의 관계</div>
+      <table>
+        <tr>
+          <th style="width: 20%;">기본 개념</th>
+          <td>
+            Lenovo 하드웨어(ThinkSystem) + Nutanix 소프트웨어(HCI)를 결합해 검증된 어플라이언스로 만든 것이 ThinkAgile HX 시리즈.
+          </td>
+        </tr>
+        <tr>
+          <th>장점</th>
+          <td>
+            <ul>
+              <li>HW/SW가 함께 검증되어 배포가 빠름</li>
+              <li>Lenovo 지원 체계 안에서 Nutanix까지 같이 연계 가능</li>
+              <li>서버 교체·확장 시에도 같은 라인업으로 맞추기 용이</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>TAM 역할</th>
+          <td>
+            <ul>
+              <li>노드/펌웨어/라이센스 상태 주기 점검</li>
+              <li>Prism 알림 기반으로 사전 예방 리포트 제공</li>
+              <li>용량·성능 트렌드 보고서로 확장 시점 제안</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 5. 운영 & 모니터링 포인트 -->
+    <div class="card">
+      <div class="card-header">5. 운영/모니터링 포인트 (TAM 관점)</div>
+      <table>
+        <tr>
+          <th style="width: 22%;">항목</th>
+          <th>설명</th>
+        </tr>
+        <tr>
+          <td>클러스터 상태</td>
+          <td>모든 노드의 CVM이 정상 동작하는지, 장애 노드가 없는지 확인.</td>
+        </tr>
+        <tr>
+          <td>스토리지 용량</td>
+          <td>DFS 용량 80% 이상이면 확장 권고. Data Resiliency에 영향.</td>
+        </tr>
+        <tr>
+          <td>Alert / Event</td>
+          <td>Prism에서 Critical/Warning 이벤트 수집 후, 고객사에 RCA/조치안 전달.</td>
+        </tr>
+        <tr>
+          <td>성능 지표</td>
+          <td>VM I/O Latency, Storage IOPS, CPU/Mem 사용률을 주기적으로 리포팅.</td>
+        </tr>
+        <tr>
+          <td>라이프사이클 관리</td>
+          <td>LCM(Life Cycle Management)로 펌웨어/소프트웨어를 일괄 업그레이드. 업그레이드 전 백업/스냅샷 권고.</td>
+        </tr>
+      </table>
+      <div class="note">
+        👉 실제 면접에서 “Nutanix 환경을 TAM으로서 어떻게 운영하시겠어요?” 라고 물으면 위 5가지를 말하고, 마지막에 “분기별 헬스체크 리포트로 고객과 리뷰하겠습니다” 붙이면 완성입니다.
+      </div>
+    </div>
+
+    <!-- 6. VMware와 비교 질문 대비 -->
+    <div class="card">
+      <div class="card-header">6. VMware(vSAN)와의 비교 포인트 (면접 대비)</div>
+      <table>
+        <tr>
+          <th style="width: 22%;">질문 포인트</th>
+          <th>대답 아이디어</th>
+        </tr>
+        <tr>
+          <td>“Nutanix와 vSAN 차이가 뭐죠?”</td>
+          <td>
+            둘 다 HCI이지만, Nutanix는 자체 하이퍼바이저(AHV)와 Prism이라는 단일 관리 UI가 강점이고,
+            vSAN은 VMware 생태계에 이미 들어가 있는 고객에게 자연스러운 선택입니다.
+          </td>
+        </tr>
+        <tr>
+          <td>“Nutanix 장점은?”</td>
+          <td>
+            하드웨어 종속성이 낮고, AHV가 무료로 포함되는 구조라 TCO가 낮으며,
+            Prism이 운영을 단순화해 TAM 입장에서 고객 교육이 쉽습니다.
+          </td>
+        </tr>
+        <tr>
+          <td>“Lenovo 환경에서는?”</td>
+          <td>
+            Lenovo ThinkAgile HX처럼 벤더에서 검증된 SKU로 공급되기 때문에 설치·운영 표준화가 쉽고,
+            글로벌 고객 지원 라인을 타기 편하다는 장점이 있습니다.
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 7. 용어 정리 -->
+    <div class="card">
+      <div class="card-header">7. 용어 정리 (Glossary)</div>
+      <table>
+        <tr>
+          <th style="width: 22%;">용어</th>
+          <th>설명</th>
+        </tr>
+        <tr>
+          <td>AHV</td>
+          <td>Nutanix Acropolis Hypervisor. Nutanix가 제공하는 KVM 기반 하이퍼바이저.</td>
+        </tr>
+        <tr>
+          <td>CVM</td>
+          <td>Controller VM. 각 노드에서 스토리지 서비스를 담당하는 핵심 컴포넌트.</td>
+        </tr>
+        <tr>
+          <td>Prism</td>
+          <td>웹 기반 관리 콘솔. 모니터링, 알림, VM, 스토리지 관리.</td>
+        </tr>
+        <tr>
+          <td>RF2 / RF3</td>
+          <td>Replication Factor. 데이터를 몇 개 복제해 둘지 결정하는 가용성 설정.</td>
+        </tr>
+        <tr>
+          <td>LCM</td>
+          <td>Life Cycle Management. 펌웨어/소프트웨어를 자동으로 업데이트해주는 기능.</td>
+        </tr>
+        <tr>
+          <td>Data Locality</td>
+          <td>VM이 있는 노드에 데이터를 두어 I/O를 빠르게 하는 Nutanix의 핵심 개념.</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="desc" style="margin-top: 28px;">
+      ※ 이 페이지는 Nutanix HCI를 처음 설명해야 하는 TAM/SA 용도로 만든 요약본입니다.
+      실제 고객사 환경에서는 라이선스 종류(AOS 버전, AHV/ESXi 여부)에 따라 기능 차이가 있을 수 있습니다.
+    </p>
+  </div>
+</body>
+</html>

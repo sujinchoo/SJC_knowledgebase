@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Storage 개념 정리표 (SAN / NAS / RAID)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --card: #ffffff;
+      --line: #e2e6ef;
+      --title: #1f2937;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 20px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    h1, h2 { text-align: center; color: var(--title); margin-bottom: 16px; }
+    p.desc { text-align: center; color: #4b5563; margin-bottom: 30px; }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.03);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+      margin-bottom: 26px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: rgba(37, 99, 235, 0.05);
+      padding: 14px 18px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    @media (max-width: 720px) { th, td { font-size: 13px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Storage 개념 정리표</h1>
+    <p class="desc"> — SAN / NAS / RAID / 모니터링 포인트</p>
+
+    <!-- 1. SAN vs NAS -->
+    <div class="card">
+      <div class="card-header">1. SAN vs NAS 비교</div>
+      <table>
+        <tr>
+          <th style="width: 20%;">구분</th>
+          <th style="width: 40%;">SAN (Storage Area Network)</th>
+          <th style="width: 40%;">NAS (Network Attached Storage)</th>
+        </tr>
+        <tr>
+          <td>접근 방식</td>
+          <td><b>Block-level</b> 접근. 서버 OS가 파일시스템 관리</td>
+          <td><b>File-level</b> 접근. NAS 장비가 파일시스템 관리</td>
+        </tr>
+        <tr>
+          <td>네트워크</td>
+          <td>전용 고속망 (Fibre Channel, iSCSI)</td>
+          <td>일반 이더넷(LAN, TCP/IP) 사용</td>
+        </tr>
+        <tr>
+          <td>프로토콜</td>
+          <td>FC, iSCSI, FCoE</td>
+          <td>NFS, SMB/CIFS</td>
+        </tr>
+        <tr>
+          <td>적용 환경</td>
+          <td>VMware, DB, ERP, 고성능·저지연 환경</td>
+          <td>파일공유, 백업, 사무용 문서 저장</td>
+        </tr>
+        <tr>
+          <td>장점</td>
+          <td>고성능, 낮은 지연, 대규모 확장</td>
+          <td>구성이 간단, 비용 저렴, 사용자 공유에 적합</td>
+        </tr>
+        <tr>
+          <td>단점</td>
+          <td>구성이 복잡, 장비/FC 스위치 비용 높음</td>
+          <td>파일 단위라 락 경합, 고성능 DB엔 부적합</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 2. RAID -->
+    <div class="card">
+      <div class="card-header">2. RAID 레벨 정리</div>
+      <table>
+        <tr>
+          <th style="width: 10%;">레벨</th>
+          <th style="width: 25%;">구조</th>
+          <th style="width: 25%;">장점</th>
+          <th style="width: 25%;">단점</th>
+          <th style="width: 15%;">최소 디스크</th>
+        </tr>
+        <tr>
+          <td><b>RAID 0</b></td>
+          <td>Striping으로 여러 디스크에 분산 저장</td>
+          <td>가장 빠름</td>
+          <td>장애 1개만 나도 전체 데이터 손실</td>
+          <td>2개</td>
+        </tr>
+        <tr>
+          <td><b>RAID 1</b></td>
+          <td>미러링 (동일 데이터 복제)</td>
+          <td>안정성 높음, 복구 빠름</td>
+          <td>사용 가능한 용량이 절반으로 줄어듦</td>
+          <td>2개</td>
+        </tr>
+        <tr>
+          <td><b>RAID 5</b></td>
+          <td>Parity 1개로 복구 가능</td>
+          <td>성능·안정성 균형, 실무에서 많이 씀</td>
+          <td>재구성 시 느림, 쓰기 성능 RAID 10보다 떨어짐</td>
+          <td>3개</td>
+        </tr>
+        <tr>
+          <td><b>RAID 6</b></td>
+          <td>Parity 2개로 복구</td>
+          <td>디스크 2개까지 장애 허용</td>
+          <td>쓰기 성능 감소</td>
+          <td>4개</td>
+        </tr>
+        <tr>
+          <td><b>RAID 10</b></td>
+          <td>RAID 1 + 0 결합</td>
+          <td>빠르고 안전, DB에 적합</td>
+          <td>용량 효율 낮음</td>
+          <td>4개</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 3. 서버–스토리지 연결 방식 -->
+    <div class="card">
+      <div class="card-header">3. 서버–스토리지 연결 방식</div>
+      <table>
+        <tr>
+          <th style="width: 20%;">방식</th>
+          <th style="width: 30%;">설명</th>
+          <th style="width: 30%;">장점</th>
+          <th style="width: 20%;">비고</th>
+        </tr>
+        <tr>
+          <td><b>DAS</b></td>
+          <td>서버에 직접 스토리지 연결 (SAS, SATA)</td>
+          <td>구성 간단, 비용 저렴</td>
+          <td>확장성 낮아 단일 서버용</td>
+        </tr>
+        <tr>
+          <td><b>SAN</b></td>
+          <td>FC/iSCSI 스위치를 통해 여러 서버가 공유 스토리지 사용</td>
+          <td>고성능, 대규모 VM/DB 환경에 최적화</td>
+          <td>LUN, Zoning, Multipath 필요</td>
+        </tr>
+        <tr>
+          <td><b>NAS</b></td>
+          <td>네트워크 공유 형태로 파일 접근</td>
+          <td>사용자/팀 파일 공유에 적합</td>
+          <td>SMB/NFS 권한 관리 중요</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 4. TAM 관점 모니터링 -->
+    <div class="card">
+      <div class="card-header">4. TAM 관점 주요 모니터링 포인트</div>
+      <table>
+        <tr>
+          <th style="width: 25%;">항목</th>
+          <th>설명</th>
+        </tr>
+        <tr>
+          <td>Capacity (용량)</td>
+          <td>전체 대비 사용량 추이 확인. 80~85% 이상이면 증설/정리 권고</td>
+        </tr>
+        <tr>
+          <td>IOPS / Latency</td>
+          <td>VM이나 DB가 느릴 때 가장 먼저 보는 지표. 지연이 지속되면 디스크나 네트워크 병목 의심</td>
+        </tr>
+        <tr>
+          <td>Firmware / Controller 상태</td>
+          <td>Storage Controller, Disk FW가 최신인지 확인. 장애 예방 차원에서 중요</td>
+        </tr>
+        <tr>
+          <td>Redundancy</td>
+          <td>Controller 이중화, Multipath, Power 이중화가 정상인지 점검</td>
+        </tr>
+        <tr>
+          <td>Backup / Snapshot</td>
+          <td>RPO/RTO에 맞는 주기로 스냅샷/복제를 하고 있는지, 실패한 Job이 없는지 확인</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 5. RAID 장애 시나리오 -->
+    <div class="card">
+      <div class="card-header">5. RAID 장애 시나리오 & 대응</div>
+      <table>
+        <tr>
+          <th style="width: 18%;">상황</th>
+          <th style="width: 32%;">증상 / 의미</th>
+          <th style="width: 30%;">TAM 대응 방향</th>
+          <th style="width: 20%;">비고</th>
+        </tr>
+        <tr>
+          <td>RAID 1 디스크 1개 장애</td>
+          <td>미러 중 한쪽 디스크 Fail. 서비스는 계속 가능</td>
+          <td>장애 디스크 교체 → Rebuild 상태 모니터링 → FW 버전 확인 → 고객에 가용성 영향 공유</td>
+          <td>보통 서비스 중 교체 가능 (hot-swap)</td>
+        </tr>
+        <tr>
+          <td>RAID 5 디스크 1개 장애</td>
+          <td>Parity로 살아있지만, 두 번째 장애 오면 전체 손실</td>
+          <td>즉시 RMA/교체 진행, Rebuild 시간 고객에게 공지, Rebuild 중 부하 작업 자제 요청</td>
+          <td>Rebuild 오래 걸릴 수 있음</td>
+        </tr>
+        <tr>
+          <td>RAID 5 디스크 2개 장애</td>
+          <td>Parity 넘어서서 복구 불가</td>
+          <td>가장 최근 백업/스냅샷 복구 가이드, 장애 분석(RCA) 작성, 동일 모델 디스크 불량률 체크</td>
+          <td>중요 고객이면 P1/Escalation</td>
+        </tr>
+        <tr>
+          <td>RAID 6 디스크 1~2개 장애</td>
+          <td>여전히 서비스 가능하나 성능 저하</td>
+          <td>디스크 순차 교체, Rebuild 동안 모니터링, RAID 그룹 과밀 여부 리포트</td>
+          <td>대용량 NAS에서 자주 사용</td>
+        </tr>
+        <tr>
+          <td>Rebuild 지연 / 실패</td>
+          <td>디스크 성능저하, 컨트롤러 문제 가능</td>
+          <td>컨트롤러 로그 수집, FW 업데이트 권고, 동일 시점 다른 디스크 SMART 확인</td>
+          <td>사전 용량/성능 리포트에 넣기</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 6. SAN LUN 할당 절차 -->
+    <div class="card">
+      <div class="card-header">6. SAN LUN 할당 기본 절차</div>
+      <table>
+        <tr>
+          <th style="width: 22%;">단계</th>
+          <th>설명</th>
+          <th style="width: 26%;">TAM 체크 포인트</th>
+        </tr>
+        <tr>
+          <td>1) LUN 생성</td>
+          <td>스토리지에서 필요 용량/RAID 풀을 선택해 LUN(논리 디스크)을 만듭니다.</td>
+          <td>- 용량 계획(증설 여유분 포함)<br>- RAID 정책 일관성<br>- 이름 규칙 수립</td>
+        </tr>
+        <tr>
+          <td>2) 이니시에이터 식별</td>
+          <td>서버 HBA(FC) WWPN 또는 iSCSI IQN을 확인해 스토리지에 등록합니다.</td>
+          <td>- 올바른 WWPN/IQN인지 확인<br>- 멀티패스용 포트가 모두 인식되는지 확인</td>
+        </tr>
+        <tr>
+          <td>3) 매핑 / 마스킹</td>
+          <td>생성한 LUN을 특정 호스트(서버) 또는 호스트 그룹에 매핑합니다. 다른 서버가 실수로 못 보게 마스킹 설정도 합니다.</td>
+          <td>- 잘못된 서버에 노출되지 않는지<br>- 호스트 그룹 구성 정확성</td>
+        </tr>
+        <tr>
+          <td>4) Zoning (SAN 스위치)</td>
+          <td>FC 스위치에서 스토리지 포트 ↔ 서버 포트 간 Zone을 구성해 통신 경로를 만듭니다. (iSCSI면 VLAN/ACL)</td>
+          <td>- 이중화 경로(Controller A/B) 모두 구성<br>- 다른 Zone과 충돌 없는지</td>
+        </tr>
+        <tr>
+          <td>5) 호스트 OS에서 디스크 스캔</td>
+          <td>서버 OS에서 새 LUN을 인식시키고, 필요 시 MPIO 설정 후 볼륨을 마운트합니다.</td>
+          <td>- OS별 MPIO 드라이버 확인<br>- 경로 Failover 테스트</td>
+        </tr>
+        <tr>
+          <td>6) 문서화 / 리포트</td>
+          <td>LUN ID, 용량, 연결된 서버, 경로 수, 생성일 등을 CMDB나 고객 문서에 기록합니다.</td>
+          <td>- 변경관리(Change) 기록<br>- 고객에 할당 현황 리포트 전달</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="desc" style="margin-top:28px;">
+      ※ 
+    </p>
+  </div>
+</body>
+</html>
