@@ -27,6 +27,15 @@ Storage, HCI, Monitoring, ITIL 등 주요 인프라 개념을 누구나 학습�
 
 ---
 
+## 🧭 주요 특징
+- 반응형 디자인 (모바일 지원)
+- favicon 포함 (⚙️ or 💡)
+- 한글 중심 학습 자료
+- TAM 인터뷰/실무 대비 구조
+- 공식 리소스 링크 포함 (Lenovo Press, Nutanix Bible, VMware Docs)
+
+---
+
 ## 🛠️ 설치 및 배포
 
 ### 🔹 1) GitHub Pages로 배포
@@ -44,19 +53,63 @@ Storage, HCI, Monitoring, ITIL 등 주요 인프라 개념을 누구나 학습�
 
 ---
 
-## 🧭 주요 특징
-- 반응형 디자인 (모바일 지원)
-- favicon 포함 (⚙️ or 💡)
-- 한글 중심 학습 자료
-- TAM 인터뷰/실무 대비 구조
-- 공식 리소스 링크 포함 (Lenovo Press, Nutanix Bible, VMware Docs)
+## 👨‍💻 저자 소개
+
+**추수진 (Sujin Choo)**  
+서비스 계정 매니저 | Lenovo Korea  
+📧 **schoo@lenovo.com**
+
+---
+
+### 🔹 경력 요약
+- **Lenovo Service Account Manager | APAC Global Accounts Solution Engineer**  
+  (2020~현재)  
+  글로벌 고객 대상 서비스 운영, 기술 지원, 매니지드 솔루션 설계 및 TAM 역할 수행.
+- **총 11년의 글로벌 IT 기업 근무 경험:**  
+  Fuji Xerox · Google · Dell · Lenovo  
+- **전문 분야:** Storage, Server, Cloud, HCI, HPC(고성능컴퓨팅), Data Analytics  
+- **프로젝트 수행:** NAVER Wale Book, SK Broadband IPTV Tablet, Shiseido DAAS, KRAFTON DX, Sejong 5G Connect 등  
+- **AI/Big Data 기반 서비스 최적화 및 고객 기술 리포팅 역량 보유**
+
+---
+
+### 🔹 학력
+- 국민대학교 **MBA (빅데이터 전공)**  
+  머신러닝, 딥러닝, 데이터 분석 및 통계 기반 경영전략 연구  
+- 국민대학교 **경영학 학사**  
+
+---
+
+### 🔹 자격 및 기술
+- **ITIL v4 Foundation** (IT 서비스 관리)
+- **MS-900 / AZ-900 (Microsoft Fundamentals)**
+- **HPC High Performance Computing Certificate**
+- **ADsP (데이터 분석 준전문가)**
+- **정보처리산업기사 (고급 레벨)**  
+- Linux / Python / SQL / Data EDA / ML & DL 기반 분석 역량 보유
+
+---
+
+### 🔹 기술 커뮤니케이션 역량
+- TAM, PM, Sales, R&D 등 **크로스 펑셔널 팀 간 협업 경험 풍부**
+- 글로벌 고객과의 영어 커뮤니케이션 및 프레젠테이션 능숙
+- 서비스 품질 개선, 고객 성공(Customer Success) 중심의 사고방식 보유
+
+---
+
+### 🔹 개인 비전
+> “기술을 단순 지원이 아닌, 고객 비즈니스 성공으로 확장시키는 Technical Account Manager가 되겠습니다.”  
+>  
+> 본 Lenovo Technical Hub는  
+> 제가 현장에서 경험한 지식과 사례를 정리하여  
+> 후배 엔지니어와 동료들이 쉽게 배우고 참고할 수 있도록 만든 **공유형 학습 플랫폼**입니다.
 
 ---
 
 ## 📬 문의
-문의 또는 제안: **schoo@lenovo.com**  
-(기술자료 제안 및 수정사항 피드백 환영)
+프로젝트 제안 및 기술 자료 추가 요청: **schoo@lenovo.com**
 
 ---
 
-© 2025 **Sujin Choo** | Lenovo Technical Knowledge Hub
+© 2025 **Sujin Choo** | Lenovo Technical Knowledge Hub  
+Powered by GitHub Pages · Render Static Hosting
