@@ -5,16 +5,50 @@
   <title>VMware vSAN Basics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6fa; margin: 0; padding: 20px; color: #1f2937; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+    }
     .wrap { max-width: 1000px; margin: 0 auto; }
-    h1, h2 { text-align: center; }
+    h1 { text-align: center; }
     p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
-    .card { background: #fff; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; padding: 20px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    /* 섹션 제목 통일 */
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: left;
+    }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border-bottom: 1px solid #e2e6ef; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th, td {
+      border-bottom: 1px solid #e2e6ef;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
     th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
     tr:last-child td { border-bottom: none; }
-    .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
     a { color: #2563eb; text-decoration: none; }
   </style>
 </head>
@@ -24,8 +58,9 @@
     <h1>VMware vSAN 기본 정리</h1>
     <p class="desc">HCI 환경에서 VMware 기반 고객을 대응할 때 필요한 개념 요약</p>
 
+    <!-- 1 -->
     <div class="card">
-      <h2>1️⃣ vSAN이란?</h2>
+      <h2 class="section-title">1️⃣ vSAN이란?</h2>
       <table>
         <tr>
           <th style="width: 20%;">정의</th>
@@ -42,8 +77,9 @@
       </table>
     </div>
 
+    <!-- 2 -->
     <div class="card">
-      <h2>2️⃣ vSAN vs Nutanix 빠른 비교</h2>
+      <h2 class="section-title">2️⃣ vSAN vs Nutanix 빠른 비교</h2>
       <table>
         <tr>
           <th>항목</th>
@@ -71,11 +107,14 @@
           <td>HCI 처음 도입, HW 선택 자유 선호 고객</td>
         </tr>
       </table>
-      <div class="note">TAM 면접에서 “Nutanix도 공부했는데 vSAN도 알아요?” 라고 나오면 위 표 수준으로만 설명해도 충분합니다.</div>
+      <div class="note">
+        TAM 면접에서 “Nutanix도 공부했는데 vSAN도 알아요?” 라고 나오면 위 표 수준으로만 설명해도 충분합니다.
+      </div>
     </div>
 
+    <!-- 3 -->
     <div class="card">
-      <h2>3️⃣ vSAN 핵심 개념</h2>
+      <h2 class="section-title">3️⃣ vSAN 핵심 개념</h2>
       <table>
         <tr>
           <th style="width: 20%;">Disk Group</th>
@@ -96,13 +135,26 @@
       </table>
     </div>
 
+    <!-- 4 -->
     <div class="card">
-      <h2>4️⃣ 운영/모니터링 포인트</h2>
+      <h2 class="section-title">4️⃣ 운영/모니터링 포인트</h2>
       <table>
-        <tr><th style="width: 25%;">용량 관리</th><td>vSAN은 후반부 용량이 차면 재구성/리밸런싱 시간이 길어질 수 있으므로 70~80%에서 증설 권고.</td></tr>
-        <tr><th>Health Check</th><td>vSAN Health Service에서 디스크, 네트워크, 구성 이상 여부를 주기적으로 확인.</td></tr>
-        <tr><th>네트워크</th><td>vSAN 트래픽용 네트워크 대역폭이 충분한지, MTU/Jumbo Frame 설정이 일관적인지 확인.</td></tr>
-        <tr><th>패치/업그레이드</th><td>vSphere Lifecycle Manager와 함께 호스트별 순차 업그레이드.</td></tr>
+        <tr>
+          <th style="width: 25%;">용량 관리</th>
+          <td>vSAN은 후반부 용량이 차면 재구성/리밸런싱 시간이 길어질 수 있으므로 70~80%에서 증설 권고.</td>
+        </tr>
+        <tr>
+          <th>Health Check</th>
+          <td>vSAN Health Service에서 디스크, 네트워크, 구성 이상 여부를 주기적으로 확인.</td>
+        </tr>
+        <tr>
+          <th>네트워크</th>
+          <td>vSAN 트래픽용 네트워크 대역폭이 충분한지, MTU/Jumbo Frame 설정이 일관적인지 확인.</td>
+        </tr>
+        <tr>
+          <th>패치/업그레이드</th>
+          <td>vSphere Lifecycle Manager와 함께 호스트별 순차 업그레이드.</td>
+        </tr>
       </table>
     </div>
 
@@ -110,13 +162,13 @@
       참고: 공식 문서는 VMware Docs의 vSAN 섹션에서 최신 버전별로 확인하세요.
     </p>
   </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
 </body>
 </html>
-<script>
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-    });
-</script>
-
