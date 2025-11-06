@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitoring Tools for TAM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6fa; margin: 0; padding: 20px; color: #1f2937; }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1, h2 { text-align: center; }
+    p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
+    .card { background: #fff; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border-bottom: 1px solid #e2e6ef; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Monitoring Tools 개요</h1>
+    <p class="desc">인프라 상태를 사전에 감지하고 고객에게 리포팅하기 위한 도구 비교</p>
+
+    <div class="card">
+      <h2>1️⃣ 왜 모니터링이 중요한가?</h2>
+      <p>Lenovo TAM 입장에서는 “문제 터진 후”가 아니라 “터지기 전에 알리는 것”이 가치입니다. 따라서 단순 이벤트 수집이 아니라 트렌드 분석이 가능한 툴을 써야 합니다.</p>
+      <div class="note">💡 보고서에 “지난달 대비 CPU 사용량 +25%” 같은 문장이 들어가면 고객 신뢰가 급격히 올라갑니다.</div>
+    </div>
+
+    <div class="card">
+      <h2>2️⃣ 주요 모니터링 툴 비교</h2>
+      <table>
+        <tr>
+          <th style="width: 20%;">도구</th>
+          <th>특징</th>
+          <th style="width: 20%;">TAM 활용 포인트</th>
+        </tr>
+        <tr>
+          <td>Lenovo XClarity / LDI</td>
+          <td>Lenovo HW 상태 모니터링, 펌웨어, 부품 상태, 예측 진단</td>
+          <td>헬스체크 리포트, FW 미준수 장비 리스트</td>
+        </tr>
+        <tr>
+          <td>vCenter / Prism</td>
+          <td>가상화/HCI 환경 통합 모니터링</td>
+          <td>VM 성능, 알림 수집, 용량 추세</td>
+        </tr>
+        <tr>
+          <td>Prometheus + Grafana</td>
+          <td>오픈소스, 메트릭 수집 후 대시보드 시각화</td>
+          <td>커스텀 대시보드로 고객 맞춤 리포트</td>
+        </tr>
+        <tr>
+          <td>Zabbix / Nagios</td>
+          <td>에이전트 기반 통합 모니터링, 알림, SLA 체크</td>
+          <td>이벤트 알림 표준화, 메일/텔레그램 연동</td>
+        </tr>
+        <tr>
+          <td>ServiceNow / ITSM</td>
+          <td>모니터링이라기보다 이벤트→티켓 자동화</td>
+          <td>Incident, Problem, Change 연계</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>3️⃣ 모니터링 설계 시 체크리스트</h2>
+      <table>
+        <tr><th style="width: 25%;">수집 대상</th><td>CPU, Memory, Disk, Network, Power, Temperature</td></tr>
+        <tr><th>임계치</th><td>CPU 80%, Disk 80~85%, Latency 20ms 이상 등 고객 환경에 맞춰 설정</td></tr>
+        <tr><th>알림 채널</th><td>Email, Slack, Teams, Webhook 기반으로 즉시 통보</td></tr>
+        <tr><th>보관 기간</th><td>트렌드 분석을 위해 최소 3~6개월 메트릭 저장</td></tr>
+        <tr><th>리포트</th><td>월간/분기별 Health Report 자동 생성</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>4️⃣ TAM 리포트에 들어가면 좋은 항목</h2>
+      <ul>
+        <li>지난달 대비 주요 알림 개수</li>
+        <li>스토리지/CPU 용량 증가율</li>
+        <li>펌웨어/드라이버 비준수 장비 리스트</li>
+        <li>가장 많이 발생한 알림 TOP 5</li>
+        <li>예방 조치(Recommended Actions)</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
