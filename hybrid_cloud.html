@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hybrid Cloud Architecture (TAM 관점)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { text-align: center; }
+    p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: left;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td {
+      border-bottom: 1px solid #e2e6ef;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="wrap">
+    <h1>Hybrid Cloud Architecture</h1>
+    <p class="desc">On-Prem 인프라와 Public Cloud를 연계해 운영할 때 TAM이 설명할 수 있는 기준 아키텍처</p>
+
+    <!-- 1 -->
+    <div class="card">
+      <h2 class="section-title">1️⃣ 하이브리드 클라우드란?</h2>
+      <p>
+        하이브리드 클라우드는 기업 데이터센터(On-Prem)와 퍼블릭 클라우드(AWS, Azure, GCP 등)를
+        <strong>네트워크로 안전하게 연결</strong>해 하나의 확장 가능한 인프라처럼 쓰는 모델입니다.
+        규제가 있는 워크로드는 내부에 두고, 탄력성이 필요한 서비스만 클라우드로 보내는 구조를 말합니다.
+      </p>
+      <div class="note">
+        💡 고객이 “완전 클라우드는 아직 이르다”라고 할 때 가장 먼저 제안할 수 있는 게 하이브리드입니다.
+        기존 투자(서버·스토리지)를 살리면서도 클라우드 서비스 활용이 가능하다는 점을 강조하세요.
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <h2 class="section-title">2️⃣ 기본 구성 요소</h2>
+      <table>
+        <tr>
+          <th style="width: 22%;">On-Prem DC</th>
+          <td>기존 레거시 시스템, 데이터베이스, 보안 장비, ERP 등 민감도가 높은 워크로드가 위치. Lenovo ThinkSystem/ThinkAgile, vSphere, Nutanix 등과 연동.</td>
+        </tr>
+        <tr>
+          <th>Public Cloud</th>
+          <td>웹 서비스, 일시적 배치 작업, DR 사이트, 백업 보관, AI inference 같은 탄력 워크로드 담당.</td>
+        </tr>
+        <tr>
+          <th>Management Layer</th>
+          <td>통합 모니터링, IaC(Terraform/Ansible), ITSM(ServiceNow) 등을 통해 온프레미스와 클라우드를 한 프로세스로 묶는 계층.</td>
+        </tr>
+        <tr>
+          <th>Identity / Security</th>
+          <td>SSO, Azure AD, IAM, 키 관리(KMS) 등 인증을 통합해 사용자와 시스템을 공통 정책으로 통제.</td>
+        </tr>
+      </table>
+      <div class="note">
+        🧩 TAM 입장에서는 “고객이 지금 어디까지 했는지”를 먼저 묻는 게 중요합니다.
+        (1) On-Prem만 있는지, (2) Cloud 계정은 있는지, (3) 둘이 실제로 연결돼 있는지.
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <h2 class="section-title">3️⃣ 네트워크/연결 아키텍처</h2>
+      <table>
+        <tr>
+          <th style="width: 22%;">Site-to-Site VPN</th>
+          <td>가장 빠르게 구축 가능한 방식. 인터넷 터널링 기반이라 비용이 적고 PoC에 적합하지만, 대역폭/지연 한계가 있음.</td>
+        </tr>
+        <tr>
+          <th>전용선(Direct Connect / ExpressRoute)</th>
+          <td>On-Prem과 클라우드를 전용 회선으로 연결해 안정적 대역폭 확보. 금융, 제조처럼 실시간 연계가 필요한 경우 사용.</td>
+        </tr>
+        <tr>
+          <th>SD-WAN 연계</th>
+          <td>지점이 여러 곳일 때 각 지점에서 클라우드로 직접 연결하도록 하는 구조. 중앙 DC 부하를 줄이고 멀티클라우드에도 유리.</td>
+        </tr>
+        <tr>
+          <th>보안 영역 분리</th>
+          <td>Cloud 쪽 VPC/VNet을 목적별로 나누고, On-Prem 방화벽 정책과 일관성 있게 설계해야 운영이 단순해짐.</td>
+        </tr>
+      </table>
+      <div class="note">
+        💡 설명할 때는 “1단계 VPN → 2단계 전용선”처럼 단계적으로 확장하는 그림을 보여주면 예산 설득이 쉽습니다.
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <h2 class="section-title">4️⃣ 운영·보안 포인트</h2>
+      <table>
+        <tr>
+          <th style="width: 25%;">통합 모니터링</th>
+          <td>On-Prem(XClarity, vCenter)와 Cloud(CloudWatch, Azure Monitor)를 하나의 대시보드로 보이게 하거나, 최소한 월간 리포트에서는 함께 보여주도록 설계.</td>
+        </tr>
+        <tr>
+          <th>Patch / Image 기준 통일</th>
+          <td>온프레미스 VM과 클라우드 VM이 다른 OS 버전/보안패치를 쓰지 않도록 골든 이미지 관리 필요.</td>
+        </tr>
+        <tr>
+          <th>Backup / DR 경로</th>
+          <td>백업은 On-Prem→Cloud(저장), DR은 Cloud→On-Prem(복구)처럼 경로를 명확히. RPO/RTO 문서화 필수.</td>
+        </tr>
+        <tr>
+          <th>비용 가시화</th>
+          <td>Cloud 쪽 리소스가 탄력적이라도 비용은 고정 리포트에 넣어줘야 함. 태그/리소스 그룹으로 서비스별 비용을 나눠 두면 TAM 리포트에 반영하기 좋음.</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <h2 class="section-title">5️⃣ TAM 관점 체크리스트</h2>
+      <ul>
+        <li>하이브리드 연결 방식이 VPN인지, 전용선인지 명확히 파악했는가?</li>
+        <li>On-Prem 모니터링(XClarity, vCenter 등)과 Cloud 모니터링이 분리되어 있지는 않은가?</li>
+        <li>백업/DR이 On-Prem↔Cloud 어느 방향으로 설계되어 있는지 문서가 있는가?</li>
+        <li>보안/계정 체계가 온프레미스 AD와 클라우드 IAM 중 어디를 기준으로 하는가?</li>
+        <li>월간/분기 리포트에 클라우드 사용량(비용/성능)도 포함할 수 있는가?</li>
+      </ul>
+      <div class="note">
+        💡 이 체크리스트를 고객 미팅 때 가져가면 “우리 하이브리드가 잘 설계됐나”를 같이 점검해볼 수 있어서 좋습니다.
+      </div>
+    </div>
+
+    <p class="desc" style="margin-top: 28px;">
+      ※ 이 문서는 하이브리드 클라우드를 처음 도입하려는 고객에게 설명하거나, 기존 On-Prem 위에 클라우드만 추가된 상태를 정리할 때 사용할 수 있는 기본 템플릿입니다.
+    </p>
+  </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
+</body>
+</html>
