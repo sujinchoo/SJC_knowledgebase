@@ -13,7 +13,7 @@
       color: #1f2937;
     }
     .wrap { max-width: 1000px; margin: 0 auto; }
-    h1, h2 { text-align: center; color: #1f2937; }
+    h1 { text-align: center; color: #1f2937; }
     p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
     .card {
       background: #fff;
@@ -21,6 +21,13 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       margin-bottom: 30px;
       padding: 20px;
+    }
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
     }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td {
@@ -51,8 +58,9 @@
     <h1>Storage & Data Protection</h1>
     <p class="desc">Snapshot · Replication · Backup · Disaster Recovery (DR) 개념 요약</p>
 
+    <!-- 1 -->
     <div class="card">
-      <h2>1️⃣ 기본 개념</h2>
+      <h2 class="section-title">1️⃣ 기본 개념</h2>
       <table>
         <tr><th>Snapshot</th><td>특정 시점의 데이터를 빠르게 복사한 가상 이미지. 파일 삭제/오류 발생 시 빠른 복구 가능.</td></tr>
         <tr><th>Replication</th><td>데이터를 다른 장비나 사이트로 복제하여 장애 발생 시 서비스 연속성을 보장.</td></tr>
@@ -61,8 +69,9 @@
       </table>
     </div>
 
+    <!-- 2 -->
     <div class="card">
-      <h2>2️⃣ RPO / RTO 정의</h2>
+      <h2 class="section-title">2️⃣ RPO / RTO 정의</h2>
       <table>
         <tr><th>RPO (Recovery Point Objective)</th><td>“얼마나 최근의 데이터까지 복구할 수 있나?” — 백업 주기나 복제 주기에 따라 달라짐.</td></tr>
         <tr><th>RTO (Recovery Time Objective)</th><td>“서비스를 얼마만에 다시 정상화할 수 있나?” — 복구 절차의 속도와 인프라 설계에 따라 달라짐.</td></tr>
@@ -70,8 +79,9 @@
       <div class="note">💡 예시: RPO=4시간, RTO=2시간이라면 장애 발생 시 4시간 이전의 데이터까지 복구하고, 전체 서비스를 2시간 안에 복원해야 함.</div>
     </div>
 
+    <!-- 3 -->
     <div class="card">
-      <h2>3️⃣ 백업 전략 종류</h2>
+      <h2 class="section-title">3️⃣ 백업 전략 종류</h2>
       <table>
         <tr><th>Full Backup</th><td>전체 데이터를 매번 백업. 복구는 빠르지만 시간·공간 많이 소모.</td></tr>
         <tr><th>Incremental Backup</th><td>이전 백업 이후 변경된 부분만 백업. 공간 효율 좋지만 복구 시 여러 버전 필요.</td></tr>
@@ -79,8 +89,9 @@
       </table>
     </div>
 
+    <!-- 4 -->
     <div class="card">
-      <h2>4️⃣ 데이터 보호 아키텍처</h2>
+      <h2 class="section-title">4️⃣ 데이터 보호 아키텍처</h2>
       <table>
         <tr><th>Local Snapshot</th><td>동일 스토리지 내에서 빠른 복구를 위한 기능 (NetApp, Lenovo DM/DE Series 지원)</td></tr>
         <tr><th>Remote Replication</th><td>DR 사이트로 데이터 실시간 복제 (Async 또는 Sync)</td></tr>
@@ -89,8 +100,9 @@
       <div class="note">🧩 TAM 관점: 고객의 RPO/RTO 목표를 듣고 백업·복제 구조를 추천할 수 있어야 함.</div>
     </div>
 
+    <!-- 5 -->
     <div class="card">
-      <h2>5️⃣ TAM 대응 체크리스트</h2>
+      <h2 class="section-title">5️⃣ TAM 대응 체크리스트</h2>
       <table>
         <tr><th>1. 백업 성공률</th><td>최근 백업 로그 7일간 성공률 확인 (95% 이상 목표)</td></tr>
         <tr><th>2. Snapshot 관리</th><td>보존 기간, 자동 삭제 정책 점검</td></tr>
@@ -105,12 +117,13 @@
       자세한 기술 구현은 <a href="https://lenovopress.lenovo.com" target="_blank">Lenovo Press</a> 또는 <a href="https://www.veeam.com" target="_blank">Veeam</a> 문서를 참고하세요.
     </p>
   </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
 </body>
 </html>
-<script>
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-    });
-</script>
