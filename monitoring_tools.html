@@ -18,6 +18,7 @@
   </style>
 </head>
 <body>
+  <div id="site-header"></div>
   <div class="wrap">
     <h1>Monitoring Tools 개요</h1>
     <p class="desc">인프라 상태를 사전에 감지하고 고객에게 리포팅하기 위한 도구 비교</p>
@@ -88,3 +89,11 @@
   </div>
 </body>
 </html>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
+
