@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>About | Sujin Choo - Lenovo Technical Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+    header {
+      background: var(--card);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      flex-wrap: wrap;
+    }
+    .nav-left h1 {
+      font-size: 20px;
+      margin: 0;
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent);
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .profile-card {
+      background: var(--card);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+    }
+    .profile-card h2 {
+      color: var(--accent);
+      margin-top: 0;
+    }
+    .profile-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 3px solid rgba(37,99,235,0.2);
+    }
+    .profile-card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    h3 {
+      color: var(--text);
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 6px 0;
+      color: #374151;
+    }
+    .timeline {
+      border-left: 2px solid var(--accent);
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+    .timeline-entry {
+      margin-bottom: 18px;
+    }
+    .timeline-entry span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .badge {
+      background: rgba(37,99,235,0.1);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    footer {
+      background: #f9fafb;
+      padding: 20px 0;
+      border-top: 1px solid #e5e7eb;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 60px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-left">
+        <h1>💡 Lenovo Technical Hub</h1>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="storage_basics.html">Storage</a>
+        <a href="nutanix_basics.html">Nutanix</a>
+        <a href="vsan_basics.html">vSAN</a>
+        <a href="monitoring_tools.html">Monitoring</a>
+        <a href="itil_usecases.html">ITIL</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon" />
+      <h2>추수진 (Sujin Choo)</h2>
+      <p>서비스 계정 매니저 | Lenovo Korea<br>
+      APAC Global Accounts Solution Engineer</p>
+      <p><a href="mailto:schoo@lenovo.com">schoo@lenovo.com</a></p>
+    </div>
+
+    <h3>🎯 경력 요약</h3>
+    <div class="timeline">
+      <div class="timeline-entry">
+        <span>2020–현재 | Lenovo Korea</span><br>
+        Service Account Manager (TAM) / APAC Global Accounts  
+        <br>· 글로벌 고객 대상 서비스 운영 및 매니지드 솔루션 설계  
+        <br>· Cisco, PwC, KPMG 등 엔터프라이즈 고객 지원  
+      </div>
+      <div class="timeline-entry">
+        <span>2019–2020 | Dell Technologies</span><br>
+        Technical ProSupport Sr. Engineer  
+        <br>· 엔터프라이즈 고객 원격 진단 및 하드웨어 문제 해결
+      </div>
+      <div class="timeline-entry">
+        <span>2017–2018 | Google Korea (VACO Japan Contract)</span><br>
+        Google App Review Consultant  
+        <br>· 글로벌 앱 품질 검수 및 UX 분석, 정책 컨설팅
+      </div>
+      <div class="timeline-entry">
+        <span>2013–2016 | Fuji Xerox Korea</span><br>
+        Field Solution Service Engineer  
+        <br>· 현장 설치 및 유지보수, SW 솔루션 배포 및 원격 지원
+      </div>
+      <div class="timeline-entry">
+        <span>2010–2012 | MBC (Munhwa Broadcasting Corporation)</span><br>
+        Tech Specialist  
+        <br>· 방송 장비 및 서버 운영, 주요 선거방송 및 긴급 뉴스 시스템 지원
+      </div>
+    </div>
+
+    <h3>📚 학력</h3>
+    <ul>
+      <li>국민대학교 MBA (빅데이터 전공)</li>
+      <li>국민대학교 경영학 학사</li>
+    </ul>
+
+    <h3>🧩 기술 및 자격</h3>
+    <div class="badges">
+      <div class="badge">ITIL v4 Foundation</div>
+      <div class="badge">MS-900</div>
+      <div class="badge">AZ-900</div>
+      <div class="badge">HPC Certificate</div>
+      <div class="badge">ADsP</div>
+      <div class="badge">정보처리산업기사</div>
+      <div class="badge">Python</div>
+      <div class="badge">Linux</div>
+      <div class="badge">SQL</div>
+    </div>
+
+    <h3>💬 기술 커뮤니케이션</h3>
+    <p>
+      TAM, PM, Sales, R&D 등 다양한 조직과의 협업 경험을 통해  
+      고객 성공(Customer Success)을 중심으로 한 기술 서비스 역량을 강화했습니다.  
+      글로벌 고객과의 영어 커뮤니케이션, 기술 리포트 및 프레젠테이션에도 능숙합니다.
+    </p>
+
+    <h3>🌱 개인 비전</h3>
+    <p>
+      “기술을 단순 지원이 아닌, 고객 비즈니스 성공으로 확장시키는 Technical Account Manager가 되겠습니다.”  
+      <br><br>
+      Lenovo Technical Hub는 제가 직접 경험한 기술 지식과 사례를 공유하여  
+      후배 엔지니어들이 참고할 수 있는 학습 자료로 만들기 위해 제작되었습니다.
+    </p>
+  </div>
+
+  <footer>
+    © 2025 Sujin Choo | Lenovo Technical Knowledge Hub |
+    <a href="mailto:schoo@lenovo.com">schoo@lenovo.com</a>
+  </footer>
+</body>
+</html>
