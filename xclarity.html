@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lenovo XClarity 기본 정리</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { text-align: center; }
+    p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: left;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td {
+      border-bottom: 1px solid #e2e6ef;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="wrap">
+    <h1>Lenovo XClarity</h1>
+    <p class="desc">Lenovo 인프라를 중앙에서 자동 발견·모니터링·패치·통합하는 경량 시스템 관리 플랫폼</p>
+
+    <!-- 1 -->
+    <div class="card">
+      <h2 class="section-title">1️⃣ XClarity 개요</h2>
+      <p>
+        Lenovo XClarity는 서버, 네트워크, 스토리지를 <strong>에이전트 없이(agent-free)</strong> 중앙에서 관리하도록 만든 관리 플랫폼입니다.
+        데이터센터에 있는 Lenovo 장비를 자동으로 발견하고, 인벤토리를 수집해 한눈에 상태를 볼 수 있게 해줍니다.
+      </p>
+      <div class="note">
+        💡 관리자 입장에서는 “장비마다 붙어서 보는 게 아니라, 한 대시보드에서 전부 보는 것”이 핵심입니다.
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <h2 class="section-title">2️⃣ 구성 요소</h2>
+      <table>
+        <tr>
+          <th style="width: 20%;">XClarity Administrator</th>
+          <td>가상 어플라이언스로 배포하는 중앙 관리 서버. 장비 자동 발견, 인벤토리, 이벤트/알람, 펌웨어 일괄 업데이트, OS 배포까지 담당.</td>
+        </tr>
+        <tr>
+          <th>XClarity Controller (XCC)</th>
+          <td>ThinkSystem 서버에 내장된 BMC/관리 엔진. 전원 제어, 원격 콘솔, 하드웨어 상태 수집을 표준화해 Administrator에서 쉽게 모니터링하도록 함.</td>
+        </tr>
+        <tr>
+          <th>XClarity Integrator</th>
+          <td>vCenter, Microsoft, ServiceNow 등 기존 ITSM/가상화 콘솔에 Lenovo 정보를 끌어와 한 화면에서 운영하도록 하는 플러그인 계열.</td>
+        </tr>
+      </table>
+      <div class="note">
+        🧩 TAM 관점에서는 “고객 인프라에 XClarity Administrator가 설치되어 있나?”를 먼저 확인하고, 없으면 PoC부터 제안하는 흐름이 좋습니다.
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <h2 class="section-title">3️⃣ 주요 기능</h2>
+      <table>
+        <tr>
+          <th style="width: 23%;">자동 발견 & 인벤토리</th>
+          <td>네트워크상 Lenovo 장비를 스캔해 자동으로 등록하고, 모델/시리얼/펌웨어 버전/상태를 한 화면에 표시.</td>
+        </tr>
+        <tr>
+          <th>이벤트·알람 통합</th>
+          <td>서버나 스위치에서 발생한 경고를 중앙으로 모아 대시보드에서 확인. 심각도별로 필터링 가능.</td>
+        </tr>
+        <tr>
+          <th>펌웨어/드라이버 일괄 배포</th>
+          <td>지원 매트릭스에 맞춰 여러 대를 한 번에 업데이트해서 “장비마다 버전이 다른” 문제를 줄임.</td>
+        </tr>
+        <tr>
+          <th>OS·구성 패턴 배포</th>
+          <td>동일한 서버를 여러 대 구축할 때 패턴을 만들어 빠르게 배포. 신규 팟(pod) 오픈 시 유용.</td>
+        </tr>
+        <tr>
+          <th>REST API 제공</th>
+          <td>CI/CD나 사내 포털과 연계해서 자동화 가능. Integrator가 이것을 활용해 타 시스템과 연결.</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <h2 class="section-title">4️⃣ TAM 관점 활용 포인트</h2>
+      <ul>
+        <li><strong>헬스체크 리포트 소스</strong>: XClarity에서 뽑은 인벤토리·이벤트 리스트를 월간 리포트 자료로 사용</li>
+        <li><strong>펌웨어 미준수 장비 식별</strong>: 고객 장비 중 FW가 뒤처진 것만 필터링해 변경 요청(Change)으로 연결</li>
+        <li><strong>콜홈(Call Home) 연계 여부 확인</strong>: Pro 라이선스나 지원 옵션 사용 시 장애 티켓 자동 생성되는지 확인</li>
+        <li><strong>다른 콘솔과의 중복 제거</strong>: vCenter/Prism만 보던 고객에게 “HW는 XClarity로”라고 역할을 나눠주면 운영이 단순해짐</li>
+      </ul>
+      <div class="note">
+        💡 면접이나 고객 미팅에서 “XClarity 있으면 펌웨어 불일치·인벤토리 수집·알람 통합이 쉬워집니다” 한 줄만 넣어도 전문성 어필됩니다.
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <h2 class="section-title">5️⃣ 도입 / 운영 체크리스트</h2>
+      <table>
+        <tr>
+          <th style="width: 28%;">1. 지원 대상 장비 확인</th>
+          <td>고객이 쓰는 서버/스위치/스토리지가 XClarity Administrator에서 관리 가능한 모델인지 확인.</td>
+        </tr>
+        <tr>
+          <th>2. 네트워크/방화벽</th>
+          <td>관리망에서 장비 IP에 접속 가능한지, 인터넷을 통해 펌웨어/라이선스 서버에 접근 가능한지 점검.</td>
+        </tr>
+        <tr>
+          <th>3. 계정/권한</th>
+          <td>장비에 접속할 관리자 계정을 XClarity에 등록해두어야 자동 수집이 제대로 동작.</td>
+        </tr>
+        <tr>
+          <th>4. 리포트 주기</th>
+          <td>월 1회 인벤토리 내보내기 또는 이벤트 요약을 표준화해서 TAM 리포트에 첨부.</td>
+        </tr>
+        <tr>
+          <th>5. Integrator 필요 여부</th>
+          <td>고객이 이미 ServiceNow, vCenter를 쓰고 있다면 해당 통합 모듈까지 제안.</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="desc" style="margin-top: 28px;">
+      ※ 이 문서는 Lenovo 인프라 운영 고객에게 “XClarity를 쓰면 뭐가 좋아지나요?”를 설명할 때 바로 쓸 수 있도록 정리한 버전입니다.
+    </p>
+  </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
+</body>
+</html>
