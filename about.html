@@ -142,21 +142,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="nav-left">
-        <h1>💡 Lenovo Technical Hub</h1>
-      </div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="storage_basics.html">Storage</a>
-        <a href="nutanix_basics.html">Nutanix</a>
-        <a href="vsan_basics.html">vSAN</a>
-        <a href="monitoring_tools.html">Monitoring</a>
-        <a href="itil_usecases.html">ITIL</a>
-      </div>
-    </nav>
-  </header>
+  <div id="site-header"></div>
 
   <div class="container">
     <div class="profile-card">
@@ -238,3 +224,10 @@
   </footer>
 </body>
 </html>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
