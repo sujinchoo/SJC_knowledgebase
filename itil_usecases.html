@@ -5,22 +5,54 @@
   <title>ITIL 적용 사례 (TAM 관점)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6fa; margin: 0; padding: 20px; color: #1f2937; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+    }
     .wrap { max-width: 1000px; margin: 0 auto; }
-    h1, h2 { text-align: center; }
+    h1 { text-align: center; }
     p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
-    .card { background: #fff; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; padding: 20px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    /* 섹션 제목 통일 */
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: left;
+    }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border-bottom: 1px solid #e2e6ef; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th, td {
+      border-bottom: 1px solid #e2e6ef;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
     th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
     tr:last-child td { border-bottom: none; }
-    .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1f2937;
+    }
     ul { margin-left: 18px; }
   </style>
-</head><body>
-  <div id="site-header"></div>
-  <!-- 여기부터 기존 페이지 내용 -->
-
+</head>
 <body>
   <div id="site-header"></div>
 
@@ -28,8 +60,9 @@
     <h1>ITIL 적용 사례</h1>
     <p class="desc">ITIL v4 기반으로 TAM 업무를 구조화하는 방법</p>
 
+    <!-- 0️⃣ 개념 섹션 -->
     <div class="card">
-      <h2>📘 ITIL이란 무엇인가?</h2>
+      <h2 class="section-title">📘 ITIL이란 무엇인가?</h2>
       <p>
         <strong>ITIL (Information Technology Infrastructure Library)</strong>은
         IT 서비스 관리(ITSM: IT Service Management)를 위한 세계적인 표준 프레임워크입니다.
@@ -42,19 +75,21 @@
         <li><strong>버전:</strong> 현재 최신 버전은 <strong>ITIL v4</strong> (Agile, DevOps, Cloud 연계)</li>
       </ul>
       <div class="note">
-        💡 ITIL v4는 “Value Stream”과 “Service Value System(SVS)” 개념을 도입하여,  
+        💡 ITIL v4는 “Value Stream”과 “Service Value System(SVS)” 개념을 도입하여,
         TAM이 고객의 비즈니스 목표 달성에 직접 기여할 수 있도록 방향을 제시합니다.
       </div>
     </div>
 
+    <!-- 1 -->
     <div class="card">
-      <h2>1️⃣ 왜 ITIL이 필요한가?</h2>
+      <h2 class="section-title">1️⃣ 왜 ITIL이 필요한가?</h2>
       <p>엔터프라이즈 고객은 “누가 해결했냐”보다 “어떤 프로세스로 재발을 막을 수 있냐”를 더 중요하게 봅니다. ITIL은 그 프로세스를 표준화해서 TAM이 신뢰를 얻도록 도와줍니다.</p>
       <div class="note">💡 당신이 이미 ITIL v4 보유라고 말하면, 아래 사례 중 하나만 구체적으로 설명해도 비즈니스에서 신뢰도가 향상됩니다.</div>
     </div>
 
+    <!-- 2 -->
     <div class="card">
-      <h2>2️⃣ TAM과 연계되는 주요 ITIL 프로세스</h2>
+      <h2 class="section-title">2️⃣ TAM과 연계되는 주요 ITIL 프로세스</h2>
       <table>
         <tr>
           <th style="width: 22%;">Incident Management</th>
@@ -75,8 +110,9 @@
       </table>
     </div>
 
+    <!-- 3 -->
     <div class="card">
-      <h2>3️⃣ ITIL vs TAM Responsibilities</h2>
+      <h2 class="section-title">3️⃣ ITIL vs TAM Responsibilities</h2>
       <p>아래 표는 각 ITIL 프로세스별로 TAM이 수행해야 하는 주요 역할을 요약한 비교표입니다.</p>
       <table>
         <tr>
@@ -116,8 +152,9 @@
       </div>
     </div>
 
+    <!-- 4 -->
     <div class="card">
-      <h2>4️⃣ 실제 적용 예시</h2>
+      <h2 class="section-title">4️⃣ 실제 적용 예시</h2>
       <table>
         <tr>
           <th style="width: 25%;">사례 1: 스토리지 성능 저하</th>
@@ -134,8 +171,9 @@
       </table>
     </div>
 
+    <!-- 5 -->
     <div class="card">
-      <h2>5️⃣ 리포트에 넣으면 좋은 ITIL 항목</h2>
+      <h2 class="section-title">5️⃣ 리포트에 넣으면 좋은 ITIL 항목</h2>
       <ul>
         <li>월간 Incident 현황 (우선순위별)</li>
         <li>Problem 등록 건수와 진행 상태</li>
@@ -146,16 +184,17 @@
     </div>
 
     <p class="desc" style="margin-top: 28px;">
-      ※ 이 문서는 고객 프레젠테이션에 바로 넣을 수 있도록 개념형으로 정리되어 있습니다.  
+      ※ 이 문서는 고객 프레젠테이션에 바로 넣을 수 있도록 개념형으로 정리되어 있습니다.<br>
       실제 고객 조직의 ITSM 툴(ServiceNow, Remedy 등)에 맞게 용어만 바꿔 쓰면 됩니다.
     </p>
   </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
 </body>
 </html>
-<script>
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-    });
-</script>
