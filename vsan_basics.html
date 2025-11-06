@@ -19,6 +19,7 @@
   </style>
 </head>
 <body>
+  <div id="site-header"></div>
   <div class="wrap">
     <h1>VMware vSAN 기본 정리</h1>
     <p class="desc">HCI 환경에서 VMware 기반 고객을 대응할 때 필요한 개념 요약</p>
@@ -111,3 +112,11 @@
   </div>
 </body>
 </html>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
+
