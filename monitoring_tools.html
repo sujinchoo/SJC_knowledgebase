@@ -5,16 +5,56 @@
   <title>Monitoring Tools for TAM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6fa; margin: 0; padding: 20px; color: #1f2937; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #1f2937;
+    }
     .wrap { max-width: 1000px; margin: 0 auto; }
-    h1, h2 { text-align: center; }
+    h1 { text-align: center; }
     p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
-    .card { background: #fff; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; padding: 20px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: left;
+    }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border-bottom: 1px solid #e2e6ef; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th, td {
+      border-bottom: 1px solid #e2e6ef;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
     th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
     tr:last-child td { border-bottom: none; }
-    .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #1f2937;
+    }
   </style>
 </head>
 <body>
@@ -23,14 +63,16 @@
     <h1>Monitoring Tools 개요</h1>
     <p class="desc">인프라 상태를 사전에 감지하고 고객에게 리포팅하기 위한 도구 비교</p>
 
+    <!-- 1 -->
     <div class="card">
-      <h2>1️⃣ 왜 모니터링이 중요한가?</h2>
+      <h2 class="section-title">1️⃣ 왜 모니터링이 중요한가?</h2>
       <p>Lenovo TAM 입장에서는 “문제 터진 후”가 아니라 “터지기 전에 알리는 것”이 가치입니다. 따라서 단순 이벤트 수집이 아니라 트렌드 분석이 가능한 툴을 써야 합니다.</p>
       <div class="note">💡 보고서에 “지난달 대비 CPU 사용량 +25%” 같은 문장이 들어가면 고객 신뢰가 급격히 올라갑니다.</div>
     </div>
 
+    <!-- 2 -->
     <div class="card">
-      <h2>2️⃣ 주요 모니터링 툴 비교</h2>
+      <h2 class="section-title">2️⃣ 주요 모니터링 툴 비교</h2>
       <table>
         <tr>
           <th style="width: 20%;">도구</th>
@@ -65,8 +107,9 @@
       </table>
     </div>
 
+    <!-- 3 -->
     <div class="card">
-      <h2>3️⃣ 모니터링 설계 시 체크리스트</h2>
+      <h2 class="section-title">3️⃣ 모니터링 설계 시 체크리스트</h2>
       <table>
         <tr><th style="width: 25%;">수집 대상</th><td>CPU, Memory, Disk, Network, Power, Temperature</td></tr>
         <tr><th>임계치</th><td>CPU 80%, Disk 80~85%, Latency 20ms 이상 등 고객 환경에 맞춰 설정</td></tr>
@@ -76,8 +119,9 @@
       </table>
     </div>
 
+    <!-- 4 -->
     <div class="card">
-      <h2>4️⃣ TAM 리포트에 들어가면 좋은 항목</h2>
+      <h2 class="section-title">4️⃣ TAM 리포트에 들어가면 좋은 항목</h2>
       <ul>
         <li>지난달 대비 주요 알림 개수</li>
         <li>스토리지/CPU 용량 증가율</li>
@@ -87,13 +131,13 @@
       </ul>
     </div>
   </div>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-header').innerHTML = html;
+      });
+  </script>
 </body>
 </html>
-<script>
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-    });
-</script>
-
