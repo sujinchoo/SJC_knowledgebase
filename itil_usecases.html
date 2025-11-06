@@ -17,8 +17,13 @@
     .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
     ul { margin-left: 18px; }
   </style>
-</head>
+</head><body>
+  <div id="site-header"></div>
+  <!-- 여기부터 기존 페이지 내용 -->
+
 <body>
+  <div id="site-header"></div>
+
   <div class="wrap">
     <h1>ITIL 적용 사례</h1>
     <p class="desc">ITIL v4 기반으로 TAM 업무를 구조화하는 방법</p>
@@ -147,3 +152,10 @@
   </div>
 </body>
 </html>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
