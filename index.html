@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Lenovo & Nutanix 기술 자료 허브</title>
+  <title>Lenovo Technical Hub – Storage, HCI & ITIL Knowledge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Lenovo TAM을 위한 Storage 및 Nutanix HCI 기술 개념 정리 자료 공유 페이지" />
+  <meta name="description" content="Lenovo TAM을 위한 Storage, HCI, ITIL 기반 기술 자료 공유 페이지" />
   <style>
     :root {
       --bg: #f4f6fa;
@@ -34,23 +34,32 @@
       justify-content: space-between;
       align-items: center;
       padding: 14px 20px;
+      flex-wrap: wrap;
     }
     .nav-left h1 {
       font-size: 20px;
       margin: 0;
       color: var(--accent);
     }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
     .nav-links a {
       text-decoration: none;
       color: var(--text);
-      margin-left: 16px;
+      padding: 6px 10px;
+      border-radius: 6px;
       font-weight: 500;
+      transition: 0.2s;
     }
     .nav-links a:hover {
+      background: rgba(37, 99, 235, 0.1);
       color: var(--accent);
     }
     .wrap {
-      max-width: 900px;
+      max-width: 950px;
       margin: 40px auto;
       padding: 0 20px;
       text-align: center;
@@ -106,6 +115,7 @@
     footer a:hover { text-decoration: underline; }
     @media (max-width: 700px) {
       .cards { flex-direction: column; align-items: center; }
+      nav { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -117,45 +127,63 @@
       </div>
       <div class="nav-links">
         <a href="storage_basics.html">Storage Basics</a>
-        <a href="nutanix_basics.html">Nutanix Basics</a>
-        <a href="data_protection.html">Storage & Data Protection</a>
+        <a href="data_protection.html">Data Protection</a>
+        <a href="nutanix_basics.html">Nutanix HCI</a>
+        <a href="vsan_basics.html">VMware vSAN</a>
+        <a href="monitoring_tools.html">Monitoring Tools</a>
+        <a href="itil_usecases.html">ITIL Use Cases</a>
       </div>
     </nav>
   </header>
 
   <div class="wrap">
-    <h2>Lenovo & Nutanix 기술 지식 공유 페이지</h2>
-    <p class="desc">이 페이지는 TAM 및 인프라 기술 담당자를 위해 정리된 Storage · HCI 기반 학습 자료입니다.<br>
-    누구나 자유롭게 읽고 학습할 수 있습니다.</p>
+    <h2>Lenovo & TAM Knowledge Sharing Hub</h2>
+    <p class="desc">
+      이 페이지는 Lenovo TAM 및 인프라 기술 담당자를 위한 학습 및 참고용 지식 자료를 모았습니다.<br/>
+      누구나 자유롭게 열람, 참고, 활용할 수 있습니다.
+    </p>
 
     <div class="cards">
       <a href="storage_basics.html" class="card">
         <h3>📦 Storage Basics</h3>
-        <p>SAN, NAS, RAID, 그리고 서버–스토리지 구조를 한눈에 배우는 가이드</p>
+        <p>SAN / NAS / RAID 구조 이해 및 서버-스토리지 연동 기본 개념</p>
+      </a>
+      <a href="data_protection.html" class="card">
+        <h3>🛡️ Data Protection</h3>
+        <p>Snapshot, Replication, Backup, DR 구조와 RPO/RTO 개념</p>
       </a>
       <a href="nutanix_basics.html" class="card">
         <h3>🧠 Nutanix HCI</h3>
-        <p>HCI 개념, AHV/Prism, Data Locality, RF 등 TAM 필수 지식 정리</p>
+        <p>HCI 개념, AHV / Prism, Data Locality, RF2/3 구조 정리</p>
       </a>
-      <a href="data_protection.html" class="card">
-        <h3>🛡️ Storage & Data Protection</h3>
-        <p>Snapshot, Replication, Backup, DR 및 복구 전략의 핵심 개념 정리</p>
+      <a href="vsan_basics.html" class="card">
+        <h3>🔹 VMware vSAN</h3>
+        <p>VMware 기반 SDS 구조, Disk Group, FTT, SPBM 정책 이해</p>
+      </a>
+      <a href="monitoring_tools.html" class="card">
+        <h3>📊 Monitoring Tools</h3>
+        <p>LDI, Prism, Prometheus, Grafana 등 TAM 모니터링 도구 비교</p>
+      </a>
+      <a href="itil_usecases.html" class="card">
+        <h3>📘 ITIL Use Cases</h3>
+        <p>Incident / Problem / Change / SLA 관리 사례 중심 정리</p>
       </a>
     </div>
 
     <div style="margin-bottom: 40px;">
       <h3>🔗 공식 리소스</h3>
       <p>
-        <a href="https://pcsupport.lenovo.com" target="_blank">Lenovo 공식 기술지원 사이트</a> <br/>
-        <a href="https://lenovopress.lenovo.com" target="_blank">Lenovo Press (제품 기술문서)</a> ·
-        <a href="https://nutanixbible.com" target="_blank">Nutanix Bible</a>
+        <a href="https://pcsupport.lenovo.com" target="_blank">Lenovo 공식 기술지원</a><br/>
+        <a href="https://lenovopress.lenovo.com" target="_blank">Lenovo Press</a> ·
+        <a href="https://nutanixbible.com" target="_blank">Nutanix Bible</a> ·
+        <a href="https://core.vmware.com/vsan" target="_blank">VMware vSAN Docs</a>
       </p>
     </div>
 
     <div style="margin-top: 50px;">
-      <h3>🌐 다음 추가 예정</h3>
+      <h3>🌐 향후 확장 예정</h3>
       <p class="desc">
-        VMware vSAN · Monitoring Tools · ITIL 적용사례 등 점차 업데이트 예정입니다.
+        Lenovo XClarity / AI Workload Optimization / Hybrid Cloud Architecture 등 추가 예정입니다.
       </p>
     </div>
   </div>
