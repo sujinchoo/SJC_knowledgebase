@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>VMware vSAN Basics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f6fa; margin: 0; padding: 20px; color: #1f2937; }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1, h2 { text-align: center; }
+    p.desc { text-align: center; color: #6b7280; margin-bottom: 30px; }
+    .card { background: #fff; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 30px; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border-bottom: 1px solid #e2e6ef; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f9fafb; font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .note { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; border-radius: 10px; margin-top: 12px; font-size: 13px; }
+    a { color: #2563eb; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>VMware vSAN 기본 정리</h1>
+    <p class="desc">HCI 환경에서 VMware 기반 고객을 대응할 때 필요한 개념 요약</p>
+
+    <div class="card">
+      <h2>1️⃣ vSAN이란?</h2>
+      <table>
+        <tr>
+          <th style="width: 20%;">정의</th>
+          <td>VMware ESXi 호스트의 로컬 디스크(HDD/SSD)를 모아 하나의 공유 스토리지 풀처럼 사용하는 소프트웨어 정의 스토리지(SDS) 솔루션.</td>
+        </tr>
+        <tr>
+          <th>구성 방식</th>
+          <td>각 호스트에 캐시 디스크 + 용량 디스크를 넣고, vSAN 클러스터로 묶어 사용.</td>
+        </tr>
+        <tr>
+          <th>장점</th>
+          <td>기존 vSphere 환경과 완전 통합, 별도 SAN 없이도 VM 저장 가능, 정책 기반 관리(Storage Policy Based Management).</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>2️⃣ vSAN vs Nutanix 빠른 비교</h2>
+      <table>
+        <tr>
+          <th>항목</th>
+          <th>vSAN</th>
+          <th>Nutanix</th>
+        </tr>
+        <tr>
+          <td>하이퍼바이저</td>
+          <td>VMware ESXi 필수</td>
+          <td>AHV 기본, ESXi도 가능</td>
+        </tr>
+        <tr>
+          <td>관리 UI</td>
+          <td>vCenter에 통합</td>
+          <td>Prism 단일 콘솔</td>
+        </tr>
+        <tr>
+          <td>정책</td>
+          <td>SPBM(스토리지 정책 기반)</td>
+          <td>Container/Volume 단위 RF 설정</td>
+        </tr>
+        <tr>
+          <td>적용 고객</td>
+          <td>기존 VMware가 강하게 깔려있는 고객</td>
+          <td>HCI 처음 도입, HW 선택 자유 선호 고객</td>
+        </tr>
+      </table>
+      <div class="note">TAM 면접에서 “Nutanix도 공부했는데 vSAN도 알아요?” 라고 나오면 위 표 수준으로만 설명해도 충분합니다.</div>
+    </div>
+
+    <div class="card">
+      <h2>3️⃣ vSAN 핵심 개념</h2>
+      <table>
+        <tr>
+          <th style="width: 20%;">Disk Group</th>
+          <td>캐시 디스크 1개 + 용량 디스크 여러 개로 구성되는 vSAN의 기본 단위.</td>
+        </tr>
+        <tr>
+          <th>Storage Policy</th>
+          <td>가용성(Failure to Tolerate), 성능, 중복성 등을 VM 단위로 정의하는 정책.</td>
+        </tr>
+        <tr>
+          <th>FTT (Failures To Tolerate)</th>
+          <td>디스크/호스트 장애를 몇 개까지 견딜지 설정. 보통 FTT=1이 기본.</td>
+        </tr>
+        <tr>
+          <th>RAID 방식</th>
+          <td>vSAN 내부적으로 RAID-1(미러) 또는 RAID-5/6(Erasure Coding) 선택 가능.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>4️⃣ 운영/모니터링 포인트</h2>
+      <table>
+        <tr><th style="width: 25%;">용량 관리</th><td>vSAN은 후반부 용량이 차면 재구성/리밸런싱 시간이 길어질 수 있으므로 70~80%에서 증설 권고.</td></tr>
+        <tr><th>Health Check</th><td>vSAN Health Service에서 디스크, 네트워크, 구성 이상 여부를 주기적으로 확인.</td></tr>
+        <tr><th>네트워크</th><td>vSAN 트래픽용 네트워크 대역폭이 충분한지, MTU/Jumbo Frame 설정이 일관적인지 확인.</td></tr>
+        <tr><th>패치/업그레이드</th><td>vSphere Lifecycle Manager와 함께 호스트별 순차 업그레이드.</td></tr>
+      </table>
+    </div>
+
+    <p class="desc" style="margin-top: 30px;">
+      참고: 공식 문서는 VMware Docs의 vSAN 섹션에서 최신 버전별로 확인하세요.
+    </p>
+  </div>
+</body>
+</html>
