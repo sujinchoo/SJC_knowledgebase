@@ -46,6 +46,7 @@
   </style>
 </head>
 <body>
+  <div id="site-header"></div>
   <div class="wrap">
     <h1>Storage & Data Protection</h1>
     <p class="desc">Snapshot · Replication · Backup · Disaster Recovery (DR) 개념 요약</p>
@@ -106,3 +107,10 @@
   </div>
 </body>
 </html>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+    });
+</script>
