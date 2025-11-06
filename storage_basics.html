@@ -48,6 +48,11 @@
   </style>
 </head>
 <body>
+  <script>
+    fetch('header.html')
+      .then(r => r.text())
+      .then(t => document.getElementById('site-header').innerHTML = t);
+  </script>
   <div class="wrap">
     <h1>Storage 개념 정리표</h1>
     <p class="desc"> — SAN / NAS / RAID / 모니터링 포인트</p>
@@ -296,3 +301,4 @@
   </div>
 </body>
 </html>
+
